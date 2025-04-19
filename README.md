@@ -1,7 +1,7 @@
 # Monochrome Video Player for the TI-84 Plus CE
 
-By Muhammed R. and Lukas Broström <br>
-DD1349, Group Project
+**By Lukas Broström and Muhammed Reza Mehdi <br>**
+**DD1349, Group Project**
 
 > **Rule 86:** If it exists, you can play *Bad Apple* on it <br> - *The Rules of the Internet*
 
