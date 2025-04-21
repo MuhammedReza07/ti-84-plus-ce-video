@@ -36,7 +36,7 @@ The file format used is based on encoding 8-bit wide columns of each frame using
 
 # Resources
 #### Video and Images
-- The *Bad Apple* video used was downloaded from Internet Archive: [https://archive.org/details/TouhouBadApple](https://archive.org/details/TouhouBadApple).
+- The *Bad Apple* video used was downloaded from Internet Archive: [https://archive.org/details/bad-apple-resources](https://archive.org/details/bad-apple-resources).
 
 #### Documentation and Further Reading
 - A successful *Bad Apple* implementation for the TI-84 Plus CE using ZX7 (an implementation of LZ77/LZSS) for video compression: [https://github.com/Penguin-Spy/BADVIDEO](https://github.com/Penguin-Spy/BADVIDEO).
