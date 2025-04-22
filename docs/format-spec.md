@@ -16,7 +16,7 @@ RLEMV files are structurally similar to PBMs, differing only in the type and enc
 
 The initial (ASCII encoded) `RLEMV` is the file magic, `size` is a `uint64_t` that consists of two concatenated `uint32_t` values representing the width and height. Specifically, `<size> = <width><height>`, meaning that the field may be treated as two adjacent `uint32_t` values if bit manipulation is to be avoided.
 
-**Note: the line breaks in the description of the RLEMV file format given above were added for clarity only and are not included in actual RLEMV headers.**
+**Note: the line breaks in the description of the RLEMV file format given above were only added for clarity and are not included in actual RLEMV headers.**
 
 # Encoding
 TODO
