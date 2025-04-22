@@ -8,13 +8,15 @@ The RLEMV file format was primarily designed to take into account various aspect
 - The LCD controller of the TI-84 Plus CE has several graphics modes, ranging from 1 bpp (bits per pxel) to 24 bpp (basically RGB colour, which is impossible to use in practice due to the limited size of VRAM). The operating system of the TI-84 Plus CE operates in a 16 bpp graphics mode. Graphics modes with less than 24 bpp operate by treating values written to VRAM as indices into a 256x16 bit RAM palette on the LCD controller. For instance, the 8 bpp graphics mode treats values written to VRAM as 8-bit indices into the palette. If the goal is to display monochrome graphics, the 1 bpp graphics mode is most appropriate as it reduces both file size and the number of writes to VRAM, making encoding and decoding the video more efficient. The trade off here is the the CE C libraries do not provide any functionality for graphics modes other than 8 bpp (which is provided in [`graphx.h`](https://ce-programming.github.io/toolchain/libraries/graphx.html)). Another limitation that is imposed by the requirement of compatibility with the 1 bpp graphics mode is that all encoding and decoding routines must operate on 8-bit blocks. This in turn makes encoding the video column-by-column more efficient than encoding row-by-row. This is because a (320x240) frame contains 40 8-bit blocks in each row but 240 8-bit blocks in each 8-bit wide column of a frame.
 
 # File Structure Summary
-RLEMV are structurally similar to PBMs, differing only in the encoding of binary content. A RLEMV file has the following structure.
+RLEMV files are structurally similar to PBMs, differing only in the type and encoding of binary content. A RLEMV file has the following structure.
 
     RLEMV
     <size: uint64_t>
     <Run-length encoded frame data>
 
-The initial (ASCII encoded) `RLEMV` is the file magic, `size` is a `uint64_t` that consists of two concatenated `uint32_t` values representing the width and height. Specifically, `<size> = <width><height>`, meaning that the field may be treated as two `uint32_t` if bit manipulation is to be avoided.
+The initial (ASCII encoded) `RLEMV` is the file magic, `size` is a `uint64_t` that consists of two concatenated `uint32_t` values representing the width and height. Specifically, `<size> = <width><height>`, meaning that the field may be treated as two adjacent `uint32_t` values if bit manipulation is to be avoided.
+
+**Note: the line breaks in the description of the RLEMV file format given above were added for clarity only and are not a part of actual RLEMV headers.**
 
 # Encoding
 TODO
