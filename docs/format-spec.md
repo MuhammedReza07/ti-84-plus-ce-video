@@ -7,6 +7,9 @@ TODO
 # Encoding
 TODO
 
+# Conversion to Application Variables
+TODO
+
 # Decoding
 TODO
 
