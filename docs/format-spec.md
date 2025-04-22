@@ -18,6 +18,3 @@ TODO
 
 # Conversion to Application Variables
 TODO
-
-# Resources
-TODO
