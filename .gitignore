@@ -2,4 +2,5 @@
 bad_apple@60fps.mp4
 
 # Primarily used for binary files.
+*.o
 *.out
