@@ -20,13 +20,12 @@ The video conversion depends on [FFmpeg](https://www.ffmpeg.org/) for converting
 # Build Instructions
 For a detailed overview of how to build the video player, the reader is referred to the [CE C/C++ Toolchain documentation](https://ce-programming.github.io/toolchain/static/getting-started.html). 
 
-Building the constituent programs of the video conversion utility may be done using your C/C++ compiler of choice, the only real requirement is linking `libnetpbm` when compiling `transpose-frames.c`. If GCC is used to compile the source file and `libnetpbm` is dynamically linked (i.e. not "baked into" the final binary), the following command may be used
+## Video Conversion Utility
+**Note: the following build instructions only apply to Linux (and possibly other UNIX-like operating systems). No Makefile is provided for Windows builds, so Windows users either have to write their own Makefile or compile from source using their C/C++ compiler of choice.**
 
-    gcc transpose-frames.c -Wall -Werror -Wextra -L<directory where libnetpbm has been installed> -lnetpbm -o transpose-frames
+The video conversion utility, specifically [`/convert/src/transpose-frames.c`](./convert/src/transpose-frames.c), depends on `libnetpbm`, which must be installed and linked during compilation. Linux users may simply use the [provided Makefile](./convert/makefile) by running `make all` in [`/convert`](./convert/).
 
-which should work, at least on Linux. If the reader wishes to build the programs on Windows, they are more than welcome to do so. However, no guarantees about the validity of the command above on platforms other than Linux are provided.
-
-Note that the reader may also need to modify the scripts used during video conversion if they wish to use a shell other than Bash.
+## Terminal Video Player
 
 # Usage Instructions
 TODO
