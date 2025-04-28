@@ -40,8 +40,8 @@ In order to apply RLEMV to a monochrome video provided as e.g. an MP4 file, the 
 
 The RLEMV conversion script does the following.
 1. Extract the frames of a video and output them as a sequence of PBM files using FFmpeg.
-2. Transpose the frames of the video, i.e. reorder the bytes such that pixel data is read in 8-bit columns (`INSERT FILE LINK`).
-3. Run-length encode the transposed frames (`INSERT FILE LINK`).
+2. Transpose the frames of the video, i.e. reorder the bytes such that pixel data is read in 8-bit columns ([`/convert/src/transpose-frames.c`](../convert/src/transpose-frames.c)).
+3. Run-length encode the transposed frames ([`/convert/src/encode-frames.c`](../convert/src/encode-frames.c)).
 
 # Conversion to Application Variables
 TODO
