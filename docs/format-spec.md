@@ -34,14 +34,14 @@ is encoded as `0b00011101` in a 1 bpp bitmap and a run of 7 such sequences would
 and `<Run-length encoded frame data> = <frame><frame> ... <frame>`.
 
 ## Implementation Details
-In order to apply RLEMV to a monochrome video provided as e.g. an MP4 file, the frames of the video must be extracted, which may be done using FFmpeg. FFmpeg may also be used to preprocess the video in order to ensure that the resulting video has the desired dimensions and frame rate (which is especially relevant when playing the video on the TI-84 Plus CE). RLEMV is a rather simple format, so the implementation of the encoder in [/convert](../convert/) basically consists of the following components.
-- A preprocessing script for video resizing and resampling ([/convert/preprocess-video.sh](../convert/preprocess-video.sh)).
-- A RLEMV conversion script ([/convert/rlemv.sh](../convert/rlemv.sh)).
+In order to apply RLEMV to a monochrome video provided as e.g. an MP4 file, the frames of the video must be extracted, which may be done using FFmpeg. FFmpeg may also be used to preprocess the video in order to ensure that the resulting video has the desired dimensions and frame rate (which is especially relevant when playing the video on the TI-84 Plus CE). RLEMV is a rather simple format, so the implementation of the encoder in [`/convert`](../convert/) basically consists of the following components.
+- A preprocessing script for video resizing and resampling ([`/convert/preprocess-video.sh`](../convert/preprocess-video.sh)).
+- A RLEMV conversion script ([`/convert/rlemv.sh`](../convert/rlemv.sh)).
 
 The RLEMV conversion script does the following.
 1. Extract the frames of a video and output them as a sequence of PBM files using FFmpeg.
-2. Transpose the frames of the video, i.e. reorder the bytes such that pixel data is read in 8-bit columns (INSERT FILE LINK).
-3. Run-length encode the transposed frames (INSERT FILE LINK).
+2. Transpose the frames of the video, i.e. reorder the bytes such that pixel data is read in 8-bit columns (`INSERT FILE LINK`).
+3. Run-length encode the transposed frames (`INSERT FILE LINK`).
 
 # Conversion to Application Variables
 TODO
