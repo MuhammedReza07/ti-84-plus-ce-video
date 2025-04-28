@@ -23,9 +23,10 @@ For a detailed overview of how to build the video player, the reader is referred
 ## Video Conversion Utility
 **Note: the following build instructions only apply to Linux (and possibly other UNIX-like operating systems). No Makefile is provided for Windows builds, so Windows users either have to write their own Makefile or compile from source using their C/C++ compiler of choice.**
 
-The video conversion utility, specifically [`/convert/src/transpose-frames.c`](./convert/src/transpose-frames.c), depends on `libnetpbm`, which must be installed and linked during compilation. Linux users may simply use the [provided Makefile](./convert/makefile) by running `make all` in [`/convert`](./convert/).
+The video conversion utility, specifically [`/convert/src/transpose-frames.c`](./convert/src/transpose-frames.c), depends on `libnetpbm`, which must be installed and linked during compilation. Linux users may use the [provided Makefile](./convert/makefile) by running `make all` in [`/convert`](./convert/) after installing `libnetpbm`. Windows users are strongly encouraged to reconsider their choice of operating system and switch to a UNIX-like operating system (such as Linux or a BSD) where it is possible to compile C code without going insane.
 
 ## Terminal Video Player
+TODO
 
 # Usage Instructions
 TODO
