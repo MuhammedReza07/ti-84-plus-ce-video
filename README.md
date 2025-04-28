@@ -33,7 +33,7 @@ TODO
 # Usage Instructions
 TODO
 
-# File Format Specification
+# Video File Format Specification
 The file format used is based on encoding 8-bit wide columns of each frame using run-length encoding (RLE). For more information about why this approach was chosen and the details of the encoding and decoding process, see [the specification](./docs/format-spec.md).
 
 # Resources
