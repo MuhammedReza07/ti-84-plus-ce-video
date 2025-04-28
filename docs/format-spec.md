@@ -12,9 +12,10 @@ RLEMV files are structurally similar to PBMs, differing only in the type and enc
 
     RLEMV
     <size: uint64_t>
+    <frame rate: uint8_t>
     <Run-length encoded frame data>
 
-The initial (ASCII encoded) `RLEMV` is the file magic, `size` is a `uint64_t` that consists of two concatenated `uint32_t` values representing the width and height. Specifically, `<size> = <width><height>`, meaning that the field may be treated as two adjacent `uint32_t` values if bit manipulation is to be avoided.
+The initial (ASCII encoded) `RLEMV` is the file magic, `size` is a `uint64_t` that consists of two concatenated `uint32_t` values representing the width and height. Specifically, `<size> = <width><height>`, meaning that the field may be treated as two adjacent `uint32_t` values if bit manipulation is to be avoided. As the name suggests, `<frame rate>` is the frame rate of the encoded video.
 
 **Note: the line breaks in the description of the RLEMV file format given above were only added for clarity and are not included in actual RLEMV headers.**
 
@@ -33,10 +34,14 @@ is encoded as `0b00011101` in a 1 bpp bitmap and a run of 7 such sequences would
 and `<Run-length encoded frame data> = <frame><frame> ... <frame>`.
 
 ## Implementation Details
-TODO
+In order to apply RLEMV to a monochrome video provided as e.g. an MP4 file, the frames of the video must be extracted, which may be done using FFmpeg. FFmpeg may also be used to preprocess the video in order to ensure that the resulting video has the desired dimensions and frame rate (which is especially relevant when playing the video on the TI-84 Plus CE). RLEMV is a rather simple format, so the implementation of the encoder in [/convert](../convert/) basically consists of the following components.
+- A preprocessing script for video resizing and resampling ([/convert/preprocess-video.sh](../convert/preprocess-video.sh)).
+- A RLEMV conversion script ([/convert/rlemv.sh](../convert/rlemv.sh)).
 
-# Decoding
-TODO
+The RLEMV conversion script does the following.
+1. Extract the frames of a video and output them as a sequence of PBM files using FFmpeg.
+2. Transpose the frames of the video, i.e. reorder the bytes such that pixel data is read in 8-bit columns (INSERT FILE LINK).
+3. Run-length encode the transposed frames (INSERT FILE LINK).
 
 # Conversion to Application Variables
 TODO
