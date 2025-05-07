@@ -1,8 +1,8 @@
 import math
 
 # let the input matrix define the size later
-ROWS = -1    # should be max 60
-COLUMNS = -1 # should be max 128
+# ROWS should be max 60
+# COLUMNS should be max 128
 
 def choose_block(top, bottom): # [top, bottom]
     character=""
@@ -19,11 +19,13 @@ def choose_block(top, bottom): # [top, bottom]
             character="x"  # something went wrong if this appears
     return character
 
-# Ignores the last row if not even amount, assumes all rows are equal in length
+
+# Ignores the last row if not even amount and any incomplete columns
 def create_pixel_matrix(matrix):     # assume matrix is structured like [row, row2, ...]
     # update matrix sizes
     ROWS = len(matrix)
     COLUMNS = len(matrix[0])
+    [matrix, COLUMNS] = fix_errors(matrix, COLUMNS)
     pixel_matrix = []
     for r in range(math.floor(ROWS/2)):
         pixel_matrix.append("")
@@ -37,14 +39,26 @@ def draw(pixel_matrix):   # draw the matrix
         print(row)
 
 
+# a bit of error prevention
+def fix_errors(matrix, COLUMNS):
+    # remove any incomplete columns
+    for r in range(len(matrix)):  
+        COLUMNS = min(COLUMNS, len(matrix[r]))
+        # change any non-binary elements to 0
+        for c in range(len(matrix[r])): 
+            if matrix[r][c] not in [0,1]:
+                matrix[r][c]=0
+    return [matrix, COLUMNS]
 
-# run tests
+
+
+# ------ run tests ---------------------
 
 def main():
     print("start!")
     print(choose_block(0,0))
-    matrix = [[1, 0, 1], [0, 1, 0, 1], [0, 0, 0], [1, 1, 0], [1,1,1], [1,1,1]]
-    matrix2 = [[1, 0, 0, 1, 1, 1, 0, 0, 1, 1], [0, 0, 1, 0, 0, 1, 1, 1, 1, 0], [1, 0, 1, 1, 1, 0, 1, 1, 0, 1], [1, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 1, 1, 1, 0, 1, 1, 0, 0, 0], [1, 1, 0, 0, 1, 0, 0, 0, 1, 0], [1, 1, 0, 1, 0, 0, 1, 1, 0, 1], [1, 0, 1, 0, 0, 0, 1, 0, 0, 0], [1, 0, 0, 0, 1, 1, 0, 1, 0, 1], [1, 1, 0, 0, 0, 0, 0, 1, 1, 1]]
+    matrix = [[1, 0, 1,1,1], [0, 1, 0, 1], [0, 0, 0], [1, 1, 0], [1,1,1], [1,1,1]]
+    matrix2 = [[1, 2, 2, 1, 1, 1, 0, 0, 1, 1,1], [0, 0, 1, 0, 0, 1, 1, 1, 1, 0], [1, 0, 1, 1, 1, 0, 1, 1, 0, 1], [1, 0, 0, 1, 1, 1, 0, 0, 0, 0], [0, 1, 1, 1, 0, 1, 1, 0, 0, 0], [1, 1, 0, 0, 1, 0, 0, 0, 1, 0], [1, 1, 0, 1, 0, 0, 1, 1, 0, 1], [1, 0, 1, 0, 0, 0, 1, 0, 0, 0], [1, 0, 0, 0, 1, 1, 0, 1, 0, 1], [1, 1, 0, 0, 0, 0, 0, 1, 1, 1]]
     pm = create_pixel_matrix(matrix2)
     
     #matrix.append([1,1,1])

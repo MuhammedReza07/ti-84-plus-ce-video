@@ -1,4 +1,6 @@
 import random
+import time
+import os
 from draw_matrix import *
 
 # make random matrix
@@ -11,6 +13,9 @@ def make_rnd(r, c):
     return matrix
 
 # run draw_matrix functions on the random matrix
-r = make_rnd(10,10)
-rpm = create_pixel_matrix(r)
-draw(rpm)
+while True:
+    os.system('clear')
+    r = make_rnd(30,50)
+    rpm = create_pixel_matrix(r)
+    draw(rpm)
+    time.sleep(0.5) # seconds between frames
