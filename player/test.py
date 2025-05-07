@@ -13,9 +13,12 @@ def make_rnd(r, c):
     return matrix
 
 # run draw_matrix functions on the random matrix
-while True:
-    os.system('clear')
-    r = make_rnd(30,50)
-    rpm = create_pixel_matrix(r)
-    draw(rpm)
-    time.sleep(0.5) # seconds between frames
+def main():
+    while True:
+        os.system('clear')
+        r = make_rnd(30,50)
+        rpm = create_pixel_matrix(r)
+        draw(rpm)
+        time.sleep(0.5) # seconds between frames
+if __name__=='__main__':
+    main()
