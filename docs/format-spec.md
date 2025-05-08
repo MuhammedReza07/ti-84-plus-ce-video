@@ -1,6 +1,9 @@
 # Video File Format Specification
 This specification describes the technical details of the **Run-length Encoded Monochrome Video** (RLEMV) file format. RLEMV files shall have the extension `.rlemv`. RLEMV is designed to yield a reasonable amount of compression while still being possible to decode efficiently, making it suitable for applications such as playing monochrome video with limited computational power and memory.
 
+# Conventions
+- All values are little-endian unless stated otherwise, i.e. multi-byte values are stored with the least significant byte first.
+
 # Background
 The RLEMV file format was primarily designed to take into account various aspects of the TI-84 Plus CE's hardware. Some of the aspects that informed the design of the format are listed below.
 - The Zilog eZ80 is clocked at 48 MHz and its performance is further degraded by wait states, which means that modern video compression techniques based on expensive mathematical transformations are probably far too expensive to be viable on the TI-84 Plus CE. Additionally, more efficient compression algorithms such as LZ77/LZSS may add additional overhead to the frame decoding process due to periodically needing to decode *entire* chunks of the video before displaying them. This is in contrast to simpler compression algorithms such as run-length encoding that yield displayable pixel data immediately after the number of repetitions has been computed.
