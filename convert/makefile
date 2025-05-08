@@ -2,11 +2,11 @@
 BIN_DIR := ./bin
 SRC_DIR := ./src
 INCLUDE_DIR := ./include
-OBJECTS := $(BIN_DIR) $(BIN_DIR)/encode-frames $(BIN_DIR)/transpose-frames
+OBJECTS := $(BIN_DIR) $(BIN_DIR)/encode-frames $(BIN_DIR)/transpose-frames $(BIN_DIR)/endianness
 
 # C compiler stuff.
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I$(INCLUDE_DIR) -L
+CFLAGS = -Wall -Werror -Wextra -I$(INCLUDE_DIR)
 
 # Compile all objects, you PHONY!
 .PHONY: all
@@ -18,8 +18,11 @@ $(BIN_DIR):
 $(BIN_DIR)/encode-frames: $(SRC_DIR)/encode-frames.c
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-$(BIN_DIR)/transpose-frames: $(SRC_DIR)/transpose-frames.c -lnetpbm
+$(BIN_DIR)/endianness: $(SRC_DIR)/endianness.c
 	$(CC) $(CFLAGS) -c $^ -o $@
+
+$(BIN_DIR)/transpose-frames: $(SRC_DIR)/transpose-frames.c $(BIN_DIR)/endianness -lnetpbm
+	$(CC) $(CFLAGS) -L -c $^ -o $@
 
 %.c:
 	touch $@
