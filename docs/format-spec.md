@@ -1,6 +1,6 @@
 # Video File Format Specification
 
-**Status: Draft**
+**Status: Draft<br>**
 **Version: N/A**
 
 This specification describes the technical details of the **Run-length Encoded Monochrome Video** (RLEMV) file format. RLEMV files shall have the extension `.rlemv`. RLEMV is designed to yield a reasonable amount of compression while still being possible to decode efficiently, making it suitable for applications such as playing monochrome video with limited computational power and memory.
