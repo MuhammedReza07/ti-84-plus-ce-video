@@ -9,4 +9,4 @@ bad_apple@60fps.mp4
 bin
 
 # Because VSCode just loves creating these at random.
-.VSCode
+/.vscode
