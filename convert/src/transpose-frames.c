@@ -1,3 +1,5 @@
+// Not to be confused with endian.h.
+#include "../include/endianness.h"
 #include <netpbm/pbm.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -22,7 +24,13 @@ int main(int argc, char **argv) {
     // Read a PBM header.
     pbm_readpbminit(stdin, &columns, &rows, &format);
 
-    // TODO: Write (part of) RLEMV header to stdout?
+    // Write necessary information for construction of RLEMV header to stdout.
+    // Realistically, columns and rows should be valid uint32_t.
+    uint32_t columns_le = host_to_le_u32(columns);
+    uint32_t rows_le = host_to_le_u32(rows);
+
+    fwrite(&columns_le, 4, 1, stdout);
+    fwrite(&rows_le, 4, 1, stdout);
     
     // Buffers reused to reduce memory allocations.
     size_t frame_columns = columns / 8;
