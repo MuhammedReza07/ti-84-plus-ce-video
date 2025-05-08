@@ -1,5 +1,6 @@
 import time
 import os
+import argparse
 import math
 #from draw_matrix import *
 import draw_matrix
@@ -16,23 +17,30 @@ from test import make_rnd
 # - print all
 
 
-# load file
-def load_file():
-    FPS = 30  # Frames per second (will probably be determined by video file later)
-    # get and return file matrix
-    return [fake_file(), FPS]
-
 # until then, make some random frames :)
 def fake_file():
     all_frames = []
     nbr_of_frames = 6562
+    h = 40
+    w = 60
     progress =range(0,nbr_of_frames,math.ceil(nbr_of_frames/10))
     for frame in range(nbr_of_frames):
         if frame in progress:
             print(f"Loading: {math.floor(frame/nbr_of_frames * 100)}%")
-        all_frames.append(draw_matrix.create_pixel_matrix(make_rnd(40,60)))
+        all_frames.append(draw_matrix.create_pixel_matrix(make_rnd(h,w)))
     return all_frames
 
+
+
+# load file and read content to string
+def load_file(file_name):
+    with open(file_name, 'r') as file:
+        file_content = file.read()
+    print(file_content)
+
+    FPS = 30  # Frames per second (will probably be determined by video file later)
+    # get and return file matrix
+    return [fake_file(), FPS]
 
 # play the frames at determined speed
 def play_video(all_frames, FPS):
@@ -43,11 +51,28 @@ def play_video(all_frames, FPS):
         time.sleep(1/FPS)
     print("End credits \n\nWe did this\nGo home now\n\nSpecial Thanks:\nMy Cats\nFor the Creme Fraishe boys")
  
+# confirm that the file exists (TODO: and is a valid video file of correct format?)
+def check_file_name(file_name):
+    print(f"{file_name} should probably be tested more")
+    #print("test1", ".waw" in "filename.waw")
+    #print(file_name)
+    return os.path.isfile(file_name)
+
 
 # ----- MAIN --------------
-def main():
-    [file_frames, FPS] = load_file()
-    play_video(file_frames, FPS)
+def main(file_name):
+    if check_file_name(file_name):
+        [file_frames, FPS] = load_file(file_name)
+        play_video(file_frames, FPS)
+    else:
+        print(f"{file_name} is not a valid file name")
 
 if __name__=="__main__":
-    main()
+    #file_name = sys.argv[1]
+    parser = argparse.ArgumentParser(
+        description="Script that plays video in terminal from file"
+    )
+    parser.add_argument("-f", required=True, type=str)
+    args = parser.parse_args()
+    file_name = args.f
+    main(file_name)
