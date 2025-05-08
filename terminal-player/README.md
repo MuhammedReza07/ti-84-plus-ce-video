@@ -6,7 +6,7 @@ As it turns out, the terminal is pretty strictly character based and not very fr
 
 # Usage
 
-In terminal: python3 player.py -f <file_name>
+In terminal: `python3 player.py -f <file_name>`
 
 # Potential issues
 
