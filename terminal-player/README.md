@@ -6,9 +6,9 @@ As it turns out, the terminal is pretty strictly character based and not very fr
 
 # Usage
 
-In terminal: `python3 player.py -f <file_name>`
+In terminal: `python3 player.py -f <file_name>`, optional `-fps <frames_per_second>`
 
-where `<file_name>` must be the full name of a file in the `videos` directory.
+where `<file_name>` must be the full name of a file in the `videos` directory. Default fps is 30 if none is given.
 
 # Potential issues
 

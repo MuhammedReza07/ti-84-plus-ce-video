@@ -32,6 +32,14 @@ def fake_file():
 
 
 
+# take encoded string segment (one frame), build binary matrix and convert to pixels
+def make_frame(encoded_string):
+    binary_matrix = []
+
+    # TODO: whatever black magic is necessary to build the binary matrix
+
+    return draw_matrix.create_pixel_matrix(binary_matrix)
+
 # load file and read content to string
 def load_file(file_name):
     with open(file_name, 'r') as file:
@@ -43,9 +51,13 @@ def load_file(file_name):
     # TODO: convert file content to pixel_matrices, read and save correct FPS
     #       - add frames to all_frames and return instead of fake_file()
 
-    FPS = 30  # Frames per second (will probably be determined by video file later)
+    # for each encoded string segment:
+    #   all_frames.append(make_frame(string_segment))
+
+    FPS = 30  # ignored for now, TODO: fix if relevant metadata works
+
     # get and return file matrix
-    return [fake_file(), FPS]
+    return [fake_file(), FPS] # TODO: change fake_file() to all_frames when fixed
 
 # play the frames at determined speed
 def play_video(all_frames, FPS):
@@ -65,10 +77,10 @@ def check_file_name(file_name):
 
 
 # ----- MAIN --------------
-def main(file_name):
+def main(file_name, fps):
     if check_file_name(file_name):
-        [file_frames, FPS] = load_file("videos/" + file_name)
-        play_video(file_frames, FPS)
+        [file_frames, FPS] = load_file("videos/" + file_name) # TODO: change to fps if relevant
+        play_video(file_frames, fps)
     else:
         print(f"{file_name} is not a valid file name")
 
@@ -78,6 +90,10 @@ if __name__=="__main__":
         description="Script that plays video in terminal from file"
     )
     parser.add_argument("-f", required=True, type=str)
+    parser.add_argument("-fps", required=False, type=int)
     args = parser.parse_args()
     file_name = args.f
-    main(file_name)
+    fps = args.fps
+    if fps is None:
+        fps = 30
+    main(file_name, fps)
