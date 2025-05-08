@@ -20,18 +20,20 @@ The video conversion depends on [FFmpeg](https://www.ffmpeg.org/) for converting
 # Build Instructions
 For a detailed overview of how to build the video player, the reader is referred to the [CE C/C++ Toolchain documentation](https://ce-programming.github.io/toolchain/static/getting-started.html). 
 
-Building the constituent programs of the video conversion utility may be done using your C/C++ compiler of choice, the only real requirement is linking `libnetpbm` when compiling `transpose-frames.c`. If GCC is used to compile the source file and `libnetpbm` is dynamically linked (i.e. not "baked into" the final binary), the following command may be used
+## Video Conversion Utility
+**Note: the following build instructions only apply to Linux (and possibly other UNIX-like operating systems). No Makefile is provided for Windows builds, so Windows users either have to write their own Makefile or compile from source using their C/C++ compiler of choice.**
 
-    gcc transpose-frames.c -Wall -Werror -Wextra -L<directory where libnetpbm has been installed> -lnetpbm -o transpose-frames
+The video conversion utility, specifically [`/convert/src/transpose-frames.c`](./convert/src/transpose-frames.c), depends on `libnetpbm`, which must be linked during compilation. The reader should be able to install `libnetpbm` using their package manager of choice. Linux users may use the [provided Makefile](./convert/makefile) by running `make all` in [`/convert`](./convert/), while Windows users are strongly encouraged to reconsider their choice of operating system and switch to a UNIX-like operating system (such as Linux or a BSD) where it is possible to compile C code without going insane. 
 
-which should work, at least on Linux. If the reader wishes to build the programs on Windows, they are more than welcome to do so. However, no guarantees about the validity of the command above on platforms other than Linux are provided.
+Readers that use shells other than Bash may also have to rewrite the conversion scripts in [`/convert`](./convert/) such that they become compatible with their shell.
 
-Note that the reader may also need to modify the scripts used during video conversion if they wish to use a shell other than Bash.
+## Terminal Video Player
+TODO
 
 # Usage Instructions
 TODO
 
-# File Format Specification
+# Video File Format Specification
 The file format used is based on encoding 8-bit wide columns of each frame using run-length encoding (RLE). For more information about why this approach was chosen and the details of the encoding and decoding process, see [the specification](./docs/format-spec.md).
 
 # Resources
