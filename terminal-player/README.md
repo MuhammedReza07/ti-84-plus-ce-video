@@ -1,3 +1,5 @@
+This should definitely have an epilepsy warning for now, this is it! You are warned :)
+
 # Terminal Video Player
 
 As it turns out, the terminal is pretty strictly character based and not very friendly with any kind of direct pixel manipulations. So for the video player to look as nice as possible while still being relatively simple we will be using sets of ASCII half blocks in strings to simulate pixels. Two rows of pixels are combined into one string of characters with full blocks █, upper/lower half blocks ▀/▄ or empty. These strings are printed to the terminal for each frame.
