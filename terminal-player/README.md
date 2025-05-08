@@ -8,6 +8,8 @@ As it turns out, the terminal is pretty strictly character based and not very fr
 
 In terminal: `python3 player.py -f <file_name>`
 
+where `<file_name>` must be the full name of a file in the `videos` directory.
+
 # Potential issues
 
 This way of printing the video to the terminal makes the possible resolution smaller than the originally intended 320x240 (unless you happen to have *incredible* screen resolution). This solution also introduces some new possible issues like screen flickering due to clearing the terminal and printing the new string array for each frame, and resulting in some potentially huge loading times and memory loads when constructing all the string arrays.

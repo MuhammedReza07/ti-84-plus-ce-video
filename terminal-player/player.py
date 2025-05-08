@@ -36,7 +36,12 @@ def fake_file():
 def load_file(file_name):
     with open(file_name, 'r') as file:
         file_content = file.read()
-    print(file_content)
+    all_frames = []
+
+    #print(file_content)
+
+    # TODO: convert file content to pixel_matrices, read and save correct FPS
+    #       - add frames to all_frames and return instead of fake_file()
 
     FPS = 30  # Frames per second (will probably be determined by video file later)
     # get and return file matrix
@@ -56,13 +61,13 @@ def check_file_name(file_name):
     print(f"{file_name} should probably be tested more")
     #print("test1", ".waw" in "filename.waw")
     #print(file_name)
-    return os.path.isfile(file_name)
+    return os.path.isfile("videos/" + file_name)
 
 
 # ----- MAIN --------------
 def main(file_name):
     if check_file_name(file_name):
-        [file_frames, FPS] = load_file(file_name)
+        [file_frames, FPS] = load_file("videos/" + file_name)
         play_video(file_frames, FPS)
     else:
         print(f"{file_name} is not a valid file name")
