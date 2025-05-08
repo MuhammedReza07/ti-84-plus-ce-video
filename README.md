@@ -15,6 +15,8 @@ For the reader who is not familiar with the TI-84 Plus CE, it is a graphing calc
 # Dependencies
 The video player for the TI-84 Plus CE is built using [CE C/C++ Toolchain](https://github.com/CE-Programming/toolchain) and requires the [CE C libraries](https://github.com/CE-Programming/libraries/releases) to run on the calculator or an emulator such as [CEmu](https://github.com/CE-Programming/CEmu). Note that this means that the CE C libraries must be transferred to the calculator prior to running the video player, which may be done using the TI Connect CE software provided by TI. Note also that the video player cannot run on TI-84 Plus CEs with OS version > 5.4.0 as OS versions 5.5.0 and up remove the ability to natively execute assembly code on the TI-84 Plus CE (at least without jailbreaking the calculator).
 
+The terminal video player depends on Python 3 and the Python standard library, i.e. no external libraries are required to run any of the code in [`/terminal-player`](./terminal-player/).
+
 The video conversion depends on [FFmpeg](https://www.ffmpeg.org/) for converting the video to a format suitable for playing on the TI-84 Plus CE (i.e. low-FPS, 320x240) and for converting the frames of the video to 1 bpp monochrome bitmaps (PBM images to be precise). These images are then processed by a series of C programs that depend on the system's C standard library and `libnetpbm` for processing the bitmaps produced by FFmpeg.
 
 # Build Instructions
