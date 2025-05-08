@@ -1,11 +1,12 @@
-# C compiler stuff.
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -L
-
 # Paths of binary and source directories.
 BIN_DIR := ./bin
 SRC_DIR := ./src
+INCLUDE_DIR := ./include
 OBJECTS := $(BIN_DIR) $(BIN_DIR)/encode-frames $(BIN_DIR)/transpose-frames
+
+# C compiler stuff.
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -I$(INCLUDE_DIR) -L
 
 # Compile all objects, you PHONY!
 .PHONY: all
