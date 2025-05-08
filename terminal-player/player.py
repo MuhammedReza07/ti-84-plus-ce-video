@@ -42,7 +42,7 @@ def play_video(all_frames, FPS):
         draw_matrix.draw(frame)
         time.sleep(1/FPS)
     print("End credits \n\nWe did this\nGo home now\n\nSpecial Thanks:\nMy Cats\nFor the Creme Fraishe boys")
-
+ 
 
 # ----- MAIN --------------
 def main():
