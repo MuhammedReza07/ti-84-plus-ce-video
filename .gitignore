@@ -12,3 +12,7 @@ bad_apple@60fps.mp4
 # Because VSCode just loves creating these at random.
 /.vscode
 */.vscode
+
+# /__pycache__ is basically /node_modules for Python anyway.
+/__pycache__
+*/__pycache__
