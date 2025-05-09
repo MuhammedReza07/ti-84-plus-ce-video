@@ -11,7 +11,7 @@ uint32_t host_to_le_u32(uint32_t value) {
     uint16_t a = 1;
 
     // If a is little-endian.
-    if ((uint8_t*)(&a) == 1) {
+    if (*((uint8_t*)(&a)) == 1) {
         return value;
     } else {
         return swap_endianness_u32(value);
@@ -22,7 +22,7 @@ uint32_t host_to_be_u32(uint32_t value) {
     uint16_t a = 1;
 
     // If a is little-endian.
-    if ((uint8_t*)(&a) == 1) {
+    if (*((uint8_t*)(&a)) == 1) {
         return swap_endianness_u32(value);
     } else {
         return value;
