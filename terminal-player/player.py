@@ -5,6 +5,7 @@ import math
 #from draw_matrix import *
 import draw_matrix
 from test import make_rnd
+import time
 
 
 # TODO get full video matrix from the video file somehow
@@ -66,12 +67,16 @@ def play_video(file_name, fps):
 
     # Render frames.
     while top != len(frames):
+        render_start = time.time()
         os.system('clear')
         frame = make_frame(frames[bottom:top], columns, rows)
         draw_matrix.draw(frame)
         bottom = top
         top += frame_size
-        time.sleep(1/fps)
+        render_end = time.time()
+        delay = (1/fps) - (render_end - render_start)
+        if delay > 0:
+            time.sleep(delay)
 
     print("End credits \n\nWe did this\nGo home now\n\nSpecial Thanks:\nMy Cats\nFor the Creme Fraishe boys")
  
