@@ -7,13 +7,13 @@ import math
 def choose_block(top, bottom): # [top, bottom]
     character=""
     match [top, bottom]:
-        case [1,0]:
-            character="▀"
         case [0,1]:
+            character="▀"
+        case [1,0]:
             character="▄"
-        case [1,1]:
-            character="█"
         case [0,0]:
+            character="█"
+        case [1,1]:
             character=" "
         case _:
             character="x"  # something went wrong if this appears
