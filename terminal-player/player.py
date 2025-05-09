@@ -47,7 +47,7 @@ def make_frame(frame_bytes, columns, rows):
         for j in range(rows):
             frame[j][(i * 8):((i + 1) * 8)] = [(column_bytes[j] & (1 << k)) >> k for k in range(7, -1, -1)]
 
-    return draw_matrix.create_pixel_matrix(frame)
+    return draw_matrix.create_frame(frame)
 
 # play the frames at determined speed
 def play_video(file_name, fps):
@@ -68,9 +68,9 @@ def play_video(file_name, fps):
     # Render frames.
     while top != len(frames):
         render_start = time.time()
-        os.system('clear')
         frame = make_frame(frames[bottom:top], columns, rows)
-        draw_matrix.draw(frame)
+        os.system('clear')
+        print(frame)
         bottom = top
         top += frame_size
         render_end = time.time()

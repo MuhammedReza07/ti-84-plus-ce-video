@@ -19,24 +19,19 @@ def choose_block(top, bottom): # [top, bottom]
             character="x"  # something went wrong if this appears
     return character
 
-
 # Ignores the last row if not even amount and any incomplete columns
-def create_pixel_matrix(matrix):     # assume matrix is structured like [row, row2, ...]
+def create_frame(matrix):     # assume matrix is structured like [row, row2, ...]
     # update matrix sizes
     ROWS = len(matrix)
     COLUMNS = len(matrix[0])
     [matrix, COLUMNS] = fix_errors(matrix, COLUMNS)
-    pixel_matrix = []
+    frame = ""
     for r in range(math.floor(ROWS/2)):
-        pixel_matrix.append("")
         for c in range(COLUMNS):
-            pixel_matrix[r] += choose_block(matrix[r*2][c], matrix[r*2+1][c])
-    return pixel_matrix
-   
-
-def draw(pixel_matrix):   # draw the matrix
-    for row in pixel_matrix:
-        print(row)
+            frame += choose_block(matrix[r*2][c], matrix[r*2+1][c])
+        frame += "\n"
+    # Remove trailing newline.
+    return frame[:-1]
 
 
 # a bit of error prevention
