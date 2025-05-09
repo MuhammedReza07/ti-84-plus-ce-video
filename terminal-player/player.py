@@ -37,14 +37,20 @@ def fake_file():
 
 # take encoded string segment (one frame), build binary matrix and convert to pixels
 def make_frame(frame_bytes, columns, rows):
-    binary_matrix = []
+    frame = [[0 for _ in range(columns)] for _ in range(rows)]
 
-    # TODO: whatever black magic is necessary to build the binary matrix
+    frame_columns = columns // 8
 
-    return draw_matrix.create_pixel_matrix(binary_matrix)
+    for i in range(frame_columns):
+        column_bytes = frame_bytes[(i * rows):((i + 1) * rows)]
+        for j in range(rows):
+            frame[j][(i * 8):((i + 1) * 8)] = [(column_bytes[j] & (1 << k)) >> k for k in range(7, -1, -1)]
+
+    return draw_matrix.create_pixel_matrix(frame)
 
 # play the frames at determined speed
 def play_video(file_name, fps):
+    # Load the entire video file in RAM. (?)
     video_file = open(file_name, "rb")
     frames = video_file.read()
 
@@ -53,9 +59,6 @@ def play_video(file_name, fps):
     frame_columns = columns // 8
     rows = u32_from_le_bytes(frames[4:8])
     frame_size = rows * frame_columns
-
-    # Allocate frame buffer.
-    frame = [[0 for _ in range(columns)] for _ in range(rows)]
     
     # Note that the frame data starts with an offset of 8 bytes.
     bottom = 8
@@ -63,18 +66,14 @@ def play_video(file_name, fps):
 
     # Render frames.
     while top != len(frames):
-        print(frames[bottom:top])
+        os.system('clear')
+        frame = make_frame(frames[bottom:top], columns, rows)
+        draw_matrix.draw(frame)
         bottom = top
         top += frame_size
-
-    """
-    for frame in all_frames:
-        os.system('clear')
-        #pixel_frame = draw_matrix.create_pixel_matrix(frame)
-        draw_matrix.draw(frame)
         time.sleep(1/fps)
+
     print("End credits \n\nWe did this\nGo home now\n\nSpecial Thanks:\nMy Cats\nFor the Creme Fraishe boys")
-    """
  
 # confirm that the file exists (TODO: and is a valid video file of correct format?)
 def check_file_name(file_name):
